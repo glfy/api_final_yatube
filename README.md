@@ -1,27 +1,26 @@
-# Как запустить проект
+## Как запустить проект
 
-Клонировать репозиторий и перейти в него в командной строке:
+1. Клонировать репозиторий и перейти в него в командной строке:
 
-git clone
+   ```bash
+   git clone git@github.com:glfy/api_final_yatube.git
+   cd api_final_yatube
+   
+2. Cоздать и активировать виртуальное окружение:
 
-cd api_final_yatube
+   ```bash
+   python3 -m venv env
+   source env/bin/activate
 
-Cоздать и активировать виртуальное окружение:
-
-python3 -m venv env
-
-source env/bin/activate
-
-Установить зависимости из файла requirements.txt:
-
-python3 -m pip install --upgrade pip
-
-pip install -r requirements.txt
-
-Выполнить миграции:
-
-python3 manage.py migrate
-
-Запустить проект:
-
-python3 manage.py runserver
+3. Установить зависимости из файла requirements.txt:
+   ```bash
+   python3 -m pip install --upgrade pip
+   pip install -r requirements.txt
+   
+4. Выполнить миграции:
+   ```bash
+   python3 manage.py migrate
+   
+5. Запустить проект:
+   ```bash
+   python3 manage.py runserver
