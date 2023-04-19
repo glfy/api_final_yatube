@@ -9,7 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        fields = "__all__"
+        fields = ("text", "pub_date", "author", "group", "image", "id")
         model = Post
 
 
@@ -19,7 +19,7 @@ class CommentSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        fields = "__all__"
+        fields = ("author", "post", "text", "created", "id")
         model = Comment
         read_only_fields = ("post",)
 
@@ -49,5 +49,5 @@ class FollowSerializer(serializers.ModelSerializer):
         return value
 
     class Meta:
-        fields = "__all__"
+        fields = ("user", "following")
         model = Follow

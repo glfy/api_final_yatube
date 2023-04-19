@@ -14,12 +14,9 @@ from posts.models import Comment, Follow, Group, Post
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Group.objects.all()
+    queryset = Group.objects.prefetch_related("posts__author").all()
     serializer_class = GroupSerializer
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly,
-        # IsAuthorOrReadOnlyPermission,
-    )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -41,7 +38,9 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         post_id = self.kwargs.get("post_id")
-        new_queryset = Comment.objects.filter(post=post_id)
+        new_queryset = Comment.objects.select_related("author").filter(
+            post=post_id
+        )
         return new_queryset
 
     def perform_create(self, serializer):

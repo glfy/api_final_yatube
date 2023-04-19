@@ -30,7 +30,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to="posts/", null=True, blank=True)
 
     def __str__(self):
-        return self.text
+        return self.text[:15]
 
 
 class Comment(models.Model):
